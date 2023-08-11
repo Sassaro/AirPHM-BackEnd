@@ -1,0 +1,58 @@
+plugins {
+    id 'java'
+    id("org.springframework.boot") version "2.7.4"
+    id("io.spring.dependency-management") version "1.0.14.RELEASE"
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+java.sourceCompatibility = JavaVersion.VERSION_15
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // básicos de cualquier proyecto Spring Boot
+    implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-hateoas")
+    implementation("org.springframework.boot:spring-boot-starter-data-rest")
+    implementation("org.springframework.boot:spring-boot-starter-validation")
+    implementation("org.springframework.boot:spring-boot-starter-web-services")
+    implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.14.2")
+    implementation('com.fasterxml.jackson.core:jackson-databind')
+    implementation("org.springdoc:springdoc-openapi-ui:1.6.14")
+    implementation("org.springframework.boot:spring-boot-devtools")
+
+    // base de datos documental MongoDB
+    implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
+
+    // conexión a la base de datos postgresql
+    implementation("org.postgresql:postgresql:42.5.3")
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+
+    // base de datos clave/valor Redis
+    implementation("org.springframework.boot:spring-boot-starter-data-redis")
+
+    // conexión a la base de datos neo4j
+    implementation("org.springframework.boot:spring-boot-starter-data-neo4j")
+
+
+    // logging
+    implementation("org.springframework.boot:spring-boot-starter-log4j2")
+    modules {
+        module("org.springframework.boot:spring-boot-starter-logging") {
+            replacedBy("org.springframework.boot:spring-boot-starter-log4j2", "Use Log4j2 instead of Logback")
+        }
+    }
+
+    // testing
+    testImplementation("com.h2database:h2:2.1.214")
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
+
+}
+
+test {
+    useJUnitPlatform()
+}
+targetCompatibility = JavaVersion.VERSION_15

@@ -1,0 +1,39 @@
+# base documental
+spring:
+  data:
+    mongodb:
+      #     Conexion con la base de datos con sharding (se conecta directamente al router 1)
+      #uri: mongodb://127.0.0.1:27117/airphm?authSource=admin
+      #     Conexion con la base de datos sin sharding
+      uri: mongodb://admin:admin@127.0.0.1:27019/airphm?authSource=admin
+
+  #   base de datos postgresql
+  datasource:
+    url: jdbc:postgresql://0.0.0.0:5432/airphm
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+
+  # base de dattos en neo4j
+  neo4j:
+    uri: bolt://localhost:7687
+    authentication:
+      username: neo4j
+      password: passw0rd
+
+  jpa:
+    #Esto debe estar siempre en false
+    open-in-view: false
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        format_sql: true
+
+logging:
+  level:
+    org.springframework.data: DEBUG
+    org.mongodb.driver.protocol.command: DEBUG
+    root: INFO
+
